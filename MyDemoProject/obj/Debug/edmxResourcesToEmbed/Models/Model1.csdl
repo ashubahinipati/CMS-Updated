@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblLogin_type">
+    <Key>
+      <PropertyRef Name="LoginId" />
+    </Key>
+    <Property Name="LoginId" Type="Int32" Nullable="false" />
+    <Property Name="LoginType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsers__LoginI__145C0A3F" FromRole="tblLogin_type" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Firstname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Lastname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LoginId" Type="Int32" />
+    <NavigationProperty Name="tblLogin_type" Relationship="Self.FK__tblUsers__LoginI__145C0A3F" FromRole="tblUsers" ToRole="tblLogin_type" />
+  </EntityType>
+  <Association Name="FK__tblUsers__LoginI__145C0A3F">
+    <End Role="tblLogin_type" Type="Self.tblLogin_type" Multiplicity="0..1" />
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLogin_type">
+        <PropertyRef Name="LoginId" />
+      </Principal>
+      <Dependent Role="tblUsers">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemoProjectEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblLogin_type" EntityType="Self.tblLogin_type" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <AssociationSet Name="FK__tblUsers__LoginI__145C0A3F" Association="Self.FK__tblUsers__LoginI__145C0A3F">
+      <End Role="tblLogin_type" EntitySet="tblLogin_type" />
+      <End Role="tblUsers" EntitySet="tblUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

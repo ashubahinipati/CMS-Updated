@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+
+
+<body>
+    <h1>WELCOME TO GLOBAL BANK</h1>
+    <div>
+        @using (Html.BeginForm("Login", "LoginPage", FormMethod.Post))
+        {
+
+            <div class="container">
+                <form>
+                    <center> LOGIN ID:  <input type="text" placeholder=" Enter Login ID " name="Username" required></center>
+                    <br />
+                    <center> PASSWORD:  <input type="password" placeholder=" Enter Password " name="Password" required></center>
+                    <br />
+                    <center>
+                        <select name="LoginId">
+                            <option value="1"> Admin </option>
+                            <option value="2"> ProductAdmin </option>
+                            <option value="3"> ProductTeam </option>
+                            <option value="4"> Customer </option>
+                        </select>
+                    </center><br>
+                    <center>
+                        <button onclick="Submit"> Log In </button>
+                        <button>@Html.ActionLink("Cancel", "Login")</button>
+                    </center>
+                    
+                </form>
+            </div>
+        }
+        @*<lab
+            el for="usrname">Username</label>
+            <input type="text" id="usrname" name="usrname" required>
+            <br />
+            <label for="psw">Password</label>
+            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                   title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>*@
+
+
+
+        @*<center><button>@Html.ActionLink("Click to Login", "Loginsuccessfull")</button>*@
+        @*<center><button>@Html.ActionLink("Forgot Password", "ForgotPassword")</button> </center>*@
+
+
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+

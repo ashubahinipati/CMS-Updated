@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ViewComplaint</title>
+</head>
+<body>
+    <div> 
+@{
+    if (Session["uname"].ToString() != string.Empty && Session["uname"] != null)
+    {
+
+        <h1>Welcome @Session["uname"],</h1>
+        <br /><hr />
+ <center>
+     <h1> Your Request has been forwarded @Session["uname"]</h1>
+
+     <button>@Html.ActionLink("Back","LoginSuccessfull")</button>
+   
+     <br />
+     <hr />
+     <br />
+     <h1>@Session["uid"]</h1>
+    <h4>
+     Username : @Session["Username"] <br />
+     Complaint ID : @Session["ComplaintId"]<br />Complaint :<br />
+    <textarea rows="10" cols="60">  @Session["Complaint"] </textarea>
+        </h4>
+        
+</center>
+    }
+    }
+    </div>
+</body>
+</html>

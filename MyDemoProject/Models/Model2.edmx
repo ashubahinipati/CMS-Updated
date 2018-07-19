@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DemoProjectModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblComplaint_Type">
+          <Key>
+            <PropertyRef Name="ComplaintId" />
+          </Key>
+          <Property Name="ComplaintId" Type="int" Nullable="false" />
+          <Property Name="ComplaintName" Type="varchar(max)" />
+          <Property Name="ComplaintCriticality" Type="int" />
+          <Property Name="ForwardPerson" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="tblComplaintUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar(max)" />
+          <Property Name="Complaint" Type="varchar(max)" />
+          <Property Name="ComplaintId" Type="int" />
+          <Property Name="ComplaintStatus" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__tblCompla__Compl__33D4B598">
+          <End Role="tblComplaint_Type" Type="Self.tblComplaint_Type" Multiplicity="0..1" />
+          <End Role="tblComplaintUsers" Type="Self.tblComplaintUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComplaint_Type">
+              <PropertyRef Name="ComplaintId" />
+            </Principal>
+            <Dependent Role="tblComplaintUsers">
+              <PropertyRef Name="ComplaintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoProjectModel2StoreContainer">
+          <EntitySet Name="tblComplaint_Type" EntityType="Self.tblComplaint_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComplaintUsers" EntityType="Self.tblComplaintUsers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblCompla__Compl__33D4B598" Association="Self.FK__tblCompla__Compl__33D4B598">
+            <End Role="tblComplaint_Type" EntitySet="tblComplaint_Type" />
+            <End Role="tblComplaintUsers" EntitySet="tblComplaintUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DemoProjectModel2" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblComplaint_Type">
+          <Key>
+            <PropertyRef Name="ComplaintId" />
+          </Key>
+          <Property Name="ComplaintId" Type="Int32" Nullable="false" />
+          <Property Name="ComplaintName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ComplaintCriticality" Type="Int32" />
+          <Property Name="ForwardPerson" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblComplaintUsers" Relationship="Self.FK__tblCompla__Compl__33D4B598" FromRole="tblComplaint_Type" ToRole="tblComplaintUsers" />
+        </EntityType>
+        <EntityType Name="tblComplaintUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Complaint" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ComplaintId" Type="Int32" />
+          <NavigationProperty Name="tblComplaint_Type" Relationship="Self.FK__tblCompla__Compl__33D4B598" FromRole="tblComplaintUsers" ToRole="tblComplaint_Type" />
+          <Property Name="ComplaintStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__tblCompla__Compl__33D4B598">
+          <End Role="tblComplaint_Type" Type="Self.tblComplaint_Type" Multiplicity="0..1" />
+          <End Role="tblComplaintUsers" Type="Self.tblComplaintUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComplaint_Type">
+              <PropertyRef Name="ComplaintId" />
+            </Principal>
+            <Dependent Role="tblComplaintUsers">
+              <PropertyRef Name="ComplaintId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DemoProjectEntitiescomplaint" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblComplaint_Type" EntityType="Self.tblComplaint_Type" />
+          <EntitySet Name="tblComplaintUsers" EntityType="Self.tblComplaintUser" />
+          <AssociationSet Name="FK__tblCompla__Compl__33D4B598" Association="Self.FK__tblCompla__Compl__33D4B598">
+            <End Role="tblComplaint_Type" EntitySet="tblComplaint_Type" />
+            <End Role="tblComplaintUsers" EntitySet="tblComplaintUsers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DemoProjectModel2StoreContainer" CdmEntityContainer="DemoProjectEntitiescomplaint">
+          <EntitySetMapping Name="tblComplaint_Type">
+            <EntityTypeMapping TypeName="DemoProjectModel2.tblComplaint_Type">
+              <MappingFragment StoreEntitySet="tblComplaint_Type">
+                <ScalarProperty Name="ComplaintId" ColumnName="ComplaintId" />
+                <ScalarProperty Name="ComplaintName" ColumnName="ComplaintName" />
+                <ScalarProperty Name="ComplaintCriticality" ColumnName="ComplaintCriticality" />
+                <ScalarProperty Name="ForwardPerson" ColumnName="ForwardPerson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComplaintUsers">
+            <EntityTypeMapping TypeName="DemoProjectModel2.tblComplaintUser">
+              <MappingFragment StoreEntitySet="tblComplaintUsers">
+                <ScalarProperty Name="ComplaintStatus" ColumnName="ComplaintStatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Complaint" ColumnName="Complaint" />
+                <ScalarProperty Name="ComplaintId" ColumnName="ComplaintId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

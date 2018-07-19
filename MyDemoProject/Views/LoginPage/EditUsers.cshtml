@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+}
+@model MyDemoProject.Models.tblUser
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditUsers</title>
+</head>
+<body>
+    @using (Html.BeginForm("EditUsers", "LoginPage", FormMethod.Post))
+    {
+    <div> 
+        <div>
+            @Html.LabelFor(m => m.Username)
+            @Html.EditorFor(m => m.Username)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Firstname)
+            @Html.EditorFor(m => m.Firstname)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Lastname)
+            @Html.EditorFor(m => m.Lastname)
+            <div>
+                <input type="submit" value="Save Changes" />
+            </div>
+        </div>
+    </div>
+    }
+</body>
+</html>

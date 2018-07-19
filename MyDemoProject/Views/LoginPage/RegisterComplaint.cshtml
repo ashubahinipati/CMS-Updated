@@ -1,0 +1,40 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>RegisterComplaint</title>
+</head>
+<body>
+    <h1>Register a Complaint: </h1>
+    <br />
+    <hr />
+    <br />
+    <div>
+        @using (Html.BeginForm("RegisterComplaint", "LoginPage", FormMethod.Post))
+        {
+        <form>
+            <left> User Name:   <input type="text" placeholder=" Enter Login ID " name="Username" required></left>
+            <br />
+            <p><left>Complaint: </left></p>
+            <left>
+               <textarea type="text" name="Complaint" rows="10" cols="60"> </textarea>               
+            </left><br>
+            <br />
+            <left>Complaint ID: <input type="text" name="ComplaintId" required></left>
+            <sub>1. Debit Card, 2. Credit Card, 3. Net Banking</sub>
+            <center>
+                <button onclick="Submit"> Send Complaint  </button>
+                <button>@Html.ActionLink("Cancel","RegisterComplaint")</button>
+            </center>
+        </form> 
+        <left><button>@Html.ActionLink("Back","loginsuccessfull")</button></left>
+        }
+       </div>
+</body>
+</html>

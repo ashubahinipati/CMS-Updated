@@ -1,0 +1,62 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminLoginSuccessfull</title>
+</head>
+<body>
+    <div> 
+ @{
+     if (Session["uname"].ToString() != string.Empty && Session["uname"] != null)
+     {
+         
+   <h1> Welcome Administrator @Session["uname"],</h1>
+   <br />
+
+<p style="text-align:right"><button>@Html.ActionLink("Change Password", "ChangePasswordAdmin")</button>
+    <button>@Html.ActionLink("Sign Out", "Login")</button>
+    
+</p>
+        
+ <p><pre> List of Users:  
+ 1. Admin 
+ 2. Product Admin 
+ 3. Product Team     
+ 4. Customer </pre></p>
+   
+   <table border="1">
+       <tr>
+           <th>ID</th>
+       <th>Username</th>
+           <th>First Name</th>
+           <th>Last Name</th>
+           <th>Login Type</th>
+   </tr>
+       @foreach(var item in Model)
+       {
+           <tr>
+               <td>@item.Id</td>
+               <td>@item.Username</td>
+               <td>@item.Firstname</td>
+               <td>@item.Lastname</td>
+           <td>@item.LoginId</td>
+               <td>@Html.ActionLink("Edit","EditUsers", new { Id=item.Id })</td>
+               <td>@Html.ActionLink("Delete", "DeleteUser", new { Id = item.Id })</td>
+           </tr>
+       }
+           </table>
+
+
+
+
+     }
+     }
+    </div>
+</body>
+</html>

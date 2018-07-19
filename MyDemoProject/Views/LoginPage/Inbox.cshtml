@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Inbox</title>
+</head>
+<body>
+    <div> 
+      @{
+          if (Session["uname"].ToString() != string.Empty && Session["uname"] != null)
+          {
+
+            <h1> Welcome @Session["uname"],</h1>
+
+              {
+
+
+          <center>
+              Id: @Session["Id"]<br />
+              Username: @Session["Username"]<br />
+              ComplaintId: @Session["Complaint ID"]<br />
+              Complaint: @Session["Complaint"]<br />
+              ComplaintStatus: @Session["ComplaintStatus"]
+          </center>
+              }
+          }
+          else {
+              <center>
+                  <h1>
+                      No Registered Complaints.
+                      <br />
+                      
+                  </h1>
+              </center>
+          }
+          }
+    </div>
+
+   
+    <button><center>@Html.ActionLink("Back", "LoginSuccessfull")</center></button>
+</body>
+</html>

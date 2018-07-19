@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProductAdminLoginSuccessfull</title>
+</head>
+<body>
+    <div>
+        @{
+            if (Session["uname"].ToString() != string.Empty && Session["uname"] != null)
+            {
+
+                <h1>Welcome Product Admin @Session["uname"],</h1>
+
+                <br />
+
+                <p style="text-align:right">
+                    <button>@Html.ActionLink("Change Password", "ChangePasswordProductAdmin")</button>
+                    <button>@Html.ActionLink("Sign Out", "Login")</button>
+
+                </p>
+                <br />
+                <br />
+
+                <div>
+
+                    <div>
+
+                        <center>
+
+                            <table border='1'>
+                                <tr>
+
+                                    <th>Complaint Id</th>
+                                    <th>Username</th>
+                                    <th>Complaint</th>
+                                    <th>Complaint Status</th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+
+                                        <td>@item.ComplaintId</td>
+                                        <td>@item.Username</td>
+                                        <td>@item.Complaint</td>
+                                        <td>@item.ComplaintStatus</td>
+                                        <td>Complaint Forwarded to Jeevan</td>
+                                        <td>
+                                            <p>
+                                                <a href="mailto:jeevan@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
+                                            </p>
+                                        </td>
+                                        @*<td>@Html.ActionLink("Resolve Complaint", "Resolve", new { Id = item.Id })</td>*@
+                                    </tr>
+                                }
+                                </table>
+                            </center>
+
+                        </div>
+                                
+
+
+                            </div>
+                            }
+                            }
+                        </div>
+                    </body>
+                </html>

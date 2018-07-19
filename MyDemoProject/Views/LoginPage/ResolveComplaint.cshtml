@@ -1,0 +1,30 @@
+﻿@model MyDemoProject.Models.tblComplaintUser
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ResolveComplaint</title>
+</head>
+<body>
+    @using (Html.BeginForm("ResolveComplaint", "LoginPage", FormMethod.Post))
+    {
+        <div>
+            <div>
+                
+                @Html.LabelFor(m => m.ComplaintStatus)
+                
+                @Html.TextBoxFor(m => m.ComplaintStatus, new { @Value="Resolved"})
+
+            </div>
+            <div>
+            <input type="submit" value="Resolve" />
+        </div>
+           </div>
+    }
+    </body>
+</html>

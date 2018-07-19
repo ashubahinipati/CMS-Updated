@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoProjectModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblComplaint_Type">
+    <Key>
+      <PropertyRef Name="ComplaintId" />
+    </Key>
+    <Property Name="ComplaintId" Type="int" Nullable="false" />
+    <Property Name="ComplaintName" Type="varchar(max)" />
+    <Property Name="ComplaintCriticality" Type="int" />
+    <Property Name="ForwardPerson" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblComplaintUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar(max)" />
+    <Property Name="Complaint" Type="varchar(max)" />
+    <Property Name="ComplaintId" Type="int" />
+    <Property Name="ComplaintStatus" Type="varchar(max)" />
+  </EntityType>
+  <Association Name="FK__tblCompla__Compl__33D4B598">
+    <End Role="tblComplaint_Type" Type="Self.tblComplaint_Type" Multiplicity="0..1" />
+    <End Role="tblComplaintUsers" Type="Self.tblComplaintUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComplaint_Type">
+        <PropertyRef Name="ComplaintId" />
+      </Principal>
+      <Dependent Role="tblComplaintUsers">
+        <PropertyRef Name="ComplaintId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemoProjectModel2StoreContainer">
+    <EntitySet Name="tblComplaint_Type" EntityType="Self.tblComplaint_Type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblComplaintUsers" EntityType="Self.tblComplaintUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblCompla__Compl__33D4B598" Association="Self.FK__tblCompla__Compl__33D4B598">
+      <End Role="tblComplaint_Type" EntitySet="tblComplaint_Type" />
+      <End Role="tblComplaintUsers" EntitySet="tblComplaintUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

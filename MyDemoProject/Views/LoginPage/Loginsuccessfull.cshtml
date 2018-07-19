@@ -1,0 +1,36 @@
+﻿
+
+@{
+//ViewBag.Title = "Loginsuccessfull";
+}
+@{
+    if (Session["uname"].ToString() != string.Empty && Session["uname"] != null)
+    {
+
+<h1>Welcome @Session["uname"],</h1>
+
+<div>
+  
+    <p style="text-align:right">
+       
+        <button>@Html.ActionLink("Inbox", "Inbox")</button>
+        <button>@Html.ActionLink("Change Password", "ChangePassword")</button>
+       <button>@Html.ActionLink("Sign Out", "Login")</button>
+    </p>
+
+</div>
+
+
+<br />
+<h3>Products Available</h3>
+
+
+<div>
+   <b> Debit Card </b>       <button>@Html.ActionLink("Click to Register a Complaint", "RegisterComplaint")</button><br /> <hr />
+  <b> Credit Card Card </b>   <button>@Html.ActionLink("Click to Register a Complaint", "RegisterComplaint")</button> <br /> <hr />
+  <b> Net Banking </b>            <button>@Html.ActionLink("Click to Register a Complaint", "RegisterComplaint")</button>
+    
+</div>
+
+    }
+    }

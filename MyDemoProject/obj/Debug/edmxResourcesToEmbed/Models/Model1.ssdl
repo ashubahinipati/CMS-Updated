@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DemoProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblLogin_type">
+    <Key>
+      <PropertyRef Name="LoginId" />
+    </Key>
+    <Property Name="LoginId" Type="int" Nullable="false" />
+    <Property Name="LoginType" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Username" Type="varchar(max)" />
+    <Property Name="Password" Type="varchar(max)" />
+    <Property Name="Firstname" Type="varchar(max)" />
+    <Property Name="Lastname" Type="varchar(max)" />
+    <Property Name="LoginId" Type="int" />
+  </EntityType>
+  <Association Name="FK__tblUsers__LoginI__145C0A3F">
+    <End Role="tblLogin_type" Type="Self.tblLogin_type" Multiplicity="0..1" />
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLogin_type">
+        <PropertyRef Name="LoginId" />
+      </Principal>
+      <Dependent Role="tblUsers">
+        <PropertyRef Name="LoginId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DemoProjectModelStoreContainer">
+    <EntitySet Name="tblLogin_type" EntityType="Self.tblLogin_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblUsers__LoginI__145C0A3F" Association="Self.FK__tblUsers__LoginI__145C0A3F">
+      <End Role="tblLogin_type" EntitySet="tblLogin_type" />
+      <End Role="tblUsers" EntitySet="tblUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
